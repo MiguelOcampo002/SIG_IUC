@@ -94,6 +94,7 @@ except:
     pass
 
 st.map(df_filtrado_barrio)
+
 # Realizar un filtrado de los datos por barrio y hora
 st.subheader('Filtrado por Barrio y Hora')
 option_hour_min_barrio = st.selectbox('Selecciona filtro por Hora',
@@ -111,3 +112,4 @@ except:
     pass
 
 st.map(df_filtrado_barrio_hora)
+
