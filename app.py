@@ -94,7 +94,7 @@ option_barrio = st.selectbox('Selecciona filtro por Barrio',
                              ('La Aguacatala', 'Aranjuez', 'Manrique', 'Robledo'))
 
 # Filtrado de DataFrame por Barrio
-df_filtrado_barrio = df_g.query('Barrio == @option_barrio')
+df_filtrado_barrio = dfbarr.query('Barrio == @option_barrio')
 
 # Visualización de datos
 st.dataframe(df_filtrado_barrio)
