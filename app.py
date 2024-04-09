@@ -36,7 +36,7 @@ for feature in data['features']:
     neig.append(barrio)
     dir.append(direccion)
     
-nm= st.slider('Selecciona el número de registros de accidentes quieres visualizar', 5, 1500)
+nm= st.slider('Selecciona el número de registros de accidentes quieres visualizar', 5, 3000)
 #Construir la tabla de datos (dataframe)
 dfLa = pd.DataFrame({'lat':La[0 : nm]})
 dfLo = pd.DataFrame({'lon':Lo[0 : nm]})
