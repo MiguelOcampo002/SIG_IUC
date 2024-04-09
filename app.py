@@ -95,20 +95,4 @@ except:
 
 st.map(df_filtrado_barrio)
 
-# Realizar un filtrado de los datos por barrio y hora
-st.subheader('Filtrado por Barrio y Hora')
-option_hour_min_barrio = st.selectbox('Selecciona filtro por Hora',
-                               ('08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00'),
-                               key='3')
-option_barrio_hora = st.selectbox('Selecciona filtro por Barrio',
-                             ('La Aguacatala', 'Aranjuez', 'Manrique', 'Robledo'))
 
-df_filtrado_barrio_hora = dfbarr.query('Barrio == @option_barrio_hora and Hora >= @option_hour_min_barrio')
-st.dataframe(df_filtrado_barrio_hora)
-
-try:
-    st.metric("Cantidad de Incidentes en el Barrio y Hora seleccionados", df_filtrado_barrio_hora.shape[0])
-except:
-    pass
-
-st.map(df_filtrado_barrio_hora)
