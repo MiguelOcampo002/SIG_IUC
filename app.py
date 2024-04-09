@@ -19,7 +19,7 @@ st.write('Se entiende por accidente de tránsito evento, generalmente involuntar
 st.subheader('Sistema de consulta de Accidentalidad municipio de Medellín')
 
 # Carga de imagen
-image = Image.open('AccV.JPEG')
+image = Image.open('AccV.jpeg')
 st.image(image, caption="Accidentes viales")
 
 # Listas para almacenar los datos
