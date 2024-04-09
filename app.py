@@ -103,7 +103,7 @@ option_hour_min_barrio = st.selectbox('Selecciona filtro por Hora',
 option_barrio_hora = st.selectbox('Selecciona filtro por Barrio',
                              ('La Aguacatala', 'Aranjuez', 'Manrique', 'Robledo'))
 
-df_filtrado_barrio_hora = df_g.query('Barrio == @option_barrio_hora and Hora >= @option_hour_min_barrio')
+df_filtrado_barrio_hora = dfbarr.query('Barrio == @option_barrio_hora and Hora >= @option_hour_min_barrio')
 st.dataframe(df_filtrado_barrio_hora)
 
 try:
