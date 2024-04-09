@@ -101,7 +101,7 @@ st.subheader('Filtrado por Barrio, Día y Hora')
 # Selección de filtro por hora
 option_hour_min_filtro = st.selectbox('Selecciona filtro por Hora',
                                ('08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00'),
-                               key='1')
+                               key='2')
 
 # Selección de filtro por día
 option_day_filtro = st.selectbox('Selecciona filtro por día', ('LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'DOMINGO'))
