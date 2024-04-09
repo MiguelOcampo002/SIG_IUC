@@ -70,3 +70,18 @@ except:
 
 st.map(df_filtrado)
 #st.write(df)
+
+option_ng = st.selectbox('Selecciona filtro por barrio',('La Aguacatala', 'Aranjuez', 'Manrique','Robledo'))
+#df_filtrado = df_g.query('día == "MIÉRCOLES" and Hora >= "08:00:00" and Hora <= "10:00:00"')
+df_filtrado = dfbarr.query('día == @option_ng and Barrio >=  @option_hour_min ')
+st.dataframe(df_filtrado)
+
+try:
+   st.metric("Cantidad de Incidentes dentro del filtro", df_filtrado.shape[0])
+except:
+    pass
+
+
+st.map(df_filtrado)
+#st.write(df)
+
