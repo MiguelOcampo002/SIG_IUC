@@ -6,7 +6,7 @@ from PIL import Image  # Importa la clase Image desde el módulo PIL
 import json
 
 # Abre el archivo GeoJSON
-with open('Accidentalidad Vial Municipio de Medellín 2016.geojson', "r") as read_file:
+with open('Mapa de Accidentalidad Vial Municipio de Medellín 2016.geojson', "r") as read_file:
     data = json.load(read_file)
 
 # Título de la aplicación
