@@ -4,7 +4,7 @@ import numpy as np
 import geopandas as gpd
 import json
 
-with open('Mapa de Accidentalidad Vial Municipio de Medellín 2016.geojson', "r") as read_file:
+with open('Accidentalidad Vial Municipio de Medellín 2016.geojson', "r") as read_file:
     data = json.load(read_file)
 
 st.title("Accidentalidad Municipio de Medellín 2016")
@@ -14,6 +14,8 @@ st.write('Se entiende por accidente de tránsito  evento, generalmente involunta
          'lugar o dentro de la zona de influencia del hecho0 (Ley 769 de 2002 - Código Nacional de Tránsito)'
          )
 st.subheader('Sistema de consulta de Accidentalidad municipio de Medellín')
+image= Image.open('LOC.png')
+st.image(image, caption="La Otra Ciudad, Logo")
 
 La = []
 Lo= []
