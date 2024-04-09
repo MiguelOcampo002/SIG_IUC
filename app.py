@@ -111,7 +111,7 @@ option_barrio_filtro = st.selectbox('Selecciona filtro por Barrio',
                              ('La Aguacatala', 'Aranjuez', 'Manrique', 'Robledo'))
 
 # Filtrado del DataFrame
-df_filtrado_barrio_dia_hora = df_g.query('Barrio == @option_barrio_filtro and día == @option_day_filtro and Hora >= @option_hour_min_filtro')
+df_filtrado_barrio_dia_hora = dfbarr.query('Barrio == @option_barrio_filtro and día == @option_day_filtro and Hora >= @option_hour_min_filtro')
 
 # Mostrar el DataFrame filtrado
 st.dataframe(df_filtrado_barrio_dia_hora)
