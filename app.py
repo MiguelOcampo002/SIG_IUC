@@ -14,8 +14,8 @@ st.write('Se entiende por accidente de tránsito  evento, generalmente involunta
          'lugar o dentro de la zona de influencia del hecho0 (Ley 769 de 2002 - Código Nacional de Tránsito)'
          )
 st.subheader('Sistema de consulta de Accidentalidad municipio de Medellín')
-image= Image.open('LOC.png')
-st.image(image, caption="La Otra Ciudad, Logo")
+image= Image.open('AccV.JPEG')
+st.image(image, caption="Accidentes viales")
 
 La = []
 Lo= []
@@ -86,4 +86,23 @@ except:
 
 st.map(df_filtrado)
 #st.write(df)
+# Supongamos que df_g es tu DataFrame con los datos
 
+# Sección de Filtrado por Barrio
+st.subheader('Filtrado por Barrio')
+option_barrio = st.selectbox('Selecciona filtro por Barrio',
+                             ('La Aguacatala', 'Aranjuez', 'Manrique', 'Robledo'))
+
+# Filtrado de DataFrame por Barrio
+df_filtrado_barrio = df_g.query('Barrio == @option_barrio')
+
+# Visualización de datos
+st.dataframe(df_filtrado_barrio)
+
+try:
+    st.metric("Cantidad de Incidentes en el Barrio seleccionado", df_filtrado_barrio.shape[0])
+except:
+    pass
+
+# Posiblemente quieras visualizar la ubicación de los incidentes en un mapa
+st.map(df_filtrado_barrio)
