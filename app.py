@@ -95,4 +95,34 @@ except:
 
 st.map(df_filtrado_barrio)
 
+# Realizar un filtrado de los datos por barrio, día y hora
+st.subheader('Filtrado por Barrio, Día y Hora')
+
+# Selección de filtro por hora
+option_hour_min_filtro = st.selectbox('Selecciona filtro por Hora',
+                               ('08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00'),
+                               key='2')
+
+# Selección de filtro por día
+option_day_filtro = st.selectbox('Selecciona filtro por día', ('LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'DOMINGO'))
+
+# Selección de filtro por barrio
+option_barrio_filtro = st.selectbox('Selecciona filtro por Barrio',
+                             ('La Aguacatala', 'Aranjuez', 'Manrique', 'Robledo'))
+
+# Filtrado del DataFrame
+df_filtrado_barrio_dia_hora = df_g.query('Barrio == @option_barrio_filtro and día == @option_day_filtro and Hora >= @option_hour_min_filtro')
+
+# Mostrar el DataFrame filtrado
+st.dataframe(df_filtrado_barrio_dia_hora)
+
+# Mostrar la cantidad de incidentes en el filtro
+try:
+    st.metric("Cantidad de Incidentes en el Filtro", df_filtrado_barrio_dia_hora.shape[0])
+except:
+    pass
+
+# Mostrar el mapa con los incidentes filtrados
+st.map(df_filtrado_barrio_dia_hora)
+
 
