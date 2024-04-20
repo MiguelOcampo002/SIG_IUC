@@ -6,43 +6,45 @@ from PIL import Image  # Importa la clase Image desde el módulo PIL
 import json
 
 # Abre el archivo GeoJSON
-with open('Mapa de Accidentalidad Vial Municipio de Medellín 2016.geojson', "r") as read_file:
+with open('pot048_2014_zona_de_influ.geojson', "r") as read_file:
     data = json.load(read_file)
 
 # Título de la aplicación
-st.title("Accidentalidad Municipio de Medellín 2016")
+st.title("Zonas de interés cultural en  Medellín")
 
 # Introducción
-st.write('Se entiende por accidente de tránsito evento, generalmente involuntario, generado al menos por un vehículo en movimiento, que causa daños a '
-         'personas y bienes involucrados en él, e igualmente afecta la normal circulación de los vehículos que se movilizan por la vía o vías comprendidas en el ' 
-         'lugar o dentro de la zona de influencia del hecho0 (Ley 769 de 2002 - Código Nacional de Tránsito)')
-st.subheader('Sistema de consulta de Accidentalidad municipio de Medellín')
+st.write('La Cultura hace a las personas, o las personas hacen la cultura, es una relación que no se nos es clara, pero entendemos su existencia y tratamos de mantener la nuestra, pues en un mundo globalizado como el contemporáneo, es difícil mantenerle.')
+st.subheader('Sistema de visualización de lugares de interés cultural')
 
 # Carga de imagen
-image = Image.open('AccV.jpeg')
+image = Image.open('BT.jpeg')
 st.image(image, caption="Accidentes viales")
 
 # Listas para almacenar los datos
 La = []
 Lo = []
-day = []
-hour = []
-neig = []
-dir = []
+GRUPO = []
+SUBGRUPO = []
+TIPO = []
+NOMBRE = []
+DIRECCION = []
 
 # Decodificación del archivo en formato JSON
 for feature in data['features']:
     coordinates = feature['geometry']['coordinates']
-    dia = feature['properties']['dia']
-    Hora = feature['properties']['hora']
-    barrio = feature['properties']['barrio']
-    direccion = feature['properties']['direccion']
+    grupo = feature['properties']['GRUPO']
+    subgrupo = feature['properties']['SUBGRUPO']
+    tipo = feature['properties']['TIPO']
+    nombre = feature['properties']['NOMBRE']
+    direccion = feature['properties']['DIRECCION']
     La.append(coordinates[1])
     Lo.append(coordinates[0])
-    day.append(dia)
-    hour.append(Hora)
-    neig.append(barrio)
-    dir.append(direccion)
+    GRUPO.append(grupo)
+    SUBGRUPO.append(subgrupo)
+    TIPO.append(tipo)
+    NOMBRE.append(nombre)
+    DIRECCION.append(direccion)
+
 
 # Slider para seleccionar el número de registros de accidentes a visualizar
 nm = st.slider('Selecciona el número de registros de accidentes que deseas visualizar', 5, 30000)
@@ -50,11 +52,12 @@ nm = st.slider('Selecciona el número de registros de accidentes que deseas visu
 # Construir el DataFrame con los datos obtenidos
 dfLa = pd.DataFrame({'lat': La[0:nm]})
 dfLo = pd.DataFrame({'lon': Lo[0:nm]})
-dfdia = pd.DataFrame({'día': day[0:nm]})
-dfhor = pd.DataFrame({'Hora': hour[0:nm]})
-dfbarr = pd.DataFrame({'Barrio': neig[0:nm]})
-dfdir = pd.DataFrame({'Dirección': dir[0:nm]})
-df_g = pd.concat([dfLa, dfLo, dfdia, dfhor, dfdir, dfbarr], axis=1)
+dfgr = pd.DataFrame({'Grupo': grupo[0:nm]})
+dfsgr = pd.DataFrame({'Subgrupo': subgrupo[0:nm]})
+dftp = pd.DataFrame({'Tipo': tipo[0:nm]})
+dfnom = pd.DataFrame({'Nombre': nombre[0:nm]})
+dfdir = pd.DataFrame({'Dirección': direccion[0:nm]})
+df_g = pd.concat([dfLa, dfLo, dfgr, dfsgr, dftp, dfnom, dfdir], axis=1)
 
 # Mostrar la tabla de datos
 st.dataframe(df_g)
@@ -63,7 +66,7 @@ st.dataframe(df_g)
 st.map(df_g)
 
 # Realizar un filtrado de los datos por día y hora
-st.subheader('Filtrado por Día y Hora')
+st.subheader('Filtrado por Grupo')
 option_hour_min = st.selectbox('Selecciona filtro por Hora',
                                ('08:00:00', '09:00:00', '10:00:00', '11:00:00', '12:00:00', '13:00:00', '14:00:00'),
                                key='1')
